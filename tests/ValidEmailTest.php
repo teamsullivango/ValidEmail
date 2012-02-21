@@ -31,27 +31,49 @@ class ValidEmailTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ValidEmail::getAddress
-     * @todo Implement testGetAddress().
+     * @covers ValidEmail::setAddress
+     * @dataProvider testSetAddressDataProvider
      */
-    public function testGetAddress()
+    public function testSetAddress($address, $expectedResult)
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+    	$this->assertEquals($this->object->setAddress($address), $expectedResult);
     }
 
-    /**
-     * @covers ValidEmail::setAddress
-     * @todo Implement testSetAddress().
-     */
-    public function testSetAddress()
+    public function testSetAddressDataProvider()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+    	return array (
+    		array ('"Abc@def"@example.com',true),
+    		array ('Abc\@def@example.com',true),
+	    	array ("dclo@us.ibm.com",true),
+	    	array ("abc\\@def@example.com",true),
+	    	array ("abc\\\\@example.com",true),
+	    	array ("Fred\\ Bloggs@example.com",true),
+	    	array ("Joe.\\\\Blow@example.com",true),
+	    	array ("\"Abc@def\"@example.com",true),
+	    	array ("\"Fred Bloggs\"@example.com",true),
+	    	array ("customer/department=shipping@example.com",true),
+	    	array ("\$A12345@example.com",true),
+	    	array ("!def!xyz%abc@example.com",true),
+	    	array ("_somename@example.com",true),
+	    	array ("user+mailbox@example.com",true),
+	    	array ("peter.piper@example.com",true),
+	    	array ("Doug\\ \\\"Ace\\\"\\ Lovell@example.com",true),
+	    	array ("\"Doug \\\"Ace\\\" L.\"@example.com",true),
+	    	array ("abc@def@example.com",false),
+	    	array ("abc\\\\@def@example.com",false),
+	    	array ("abc\\@example.com",false),
+	    	array ("@example.com",false),
+	    	array ("doug@",false),
+	    	array ("\"qu@example.com",false),
+	    	array ("ote\"@example.com",false),
+	    	array (".dot@example.com",false),
+	    	array ("dot.@example.com",false),
+	    	array ("two..dot@example.com",false),
+	    	array ("\"Doug \"Ace\" L.\"@example.com",false),
+	    	array ("Doug\\ \\\"Ace\\\"\\ L\\.@example.com",false),
+	    	array ("hello world@example.com",false),
+	    	array ("gatsby@f.sc.ot.t.f.i.tzg.era.l.d.",false)
+    	);
     }
 }
 ?>

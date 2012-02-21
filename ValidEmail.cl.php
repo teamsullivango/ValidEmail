@@ -2,7 +2,7 @@
 class ValidEmail{
 	 private $address;
 
-	 public function __construct($address)
+	 public function __construct($address = null)
 	 {
 	 	return $this->setAddress($address);
 	 }
@@ -42,7 +42,7 @@ class ValidEmail{
 	  address format and the domain exists.
 	  */
 
-	 private function isValid($address){
+	 private function isValid($email){
 	 	$isValid = true;
 	 	$atIndex = strrpos($email, "@");
 	 	if (is_bool($atIndex) && !$atIndex)
