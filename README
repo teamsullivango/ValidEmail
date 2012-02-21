@@ -1,0 +1,13 @@
+ValidEmail is only a wrapper for a PHP validity email test.
+	 /**
+	 * @author Douglas Lovell
+	 * @link http://www.linuxjournal.com/article/9585?page=0,3
+	 * @copyright Linuxjournal.com June 1, 2007
+	 */
+
+	 /**
+	  Validate an email address.
+	  Provide email address (raw input)
+	  Returns true if the email address has the email
+	  address format and the domain exists.
+	  */
